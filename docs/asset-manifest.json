@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.a617e044.chunk.css",
-    "main.js": "/static/js/main.e963fbbd.chunk.js",
-    "main.js.map": "/static/js/main.e963fbbd.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.cbdd1686.js",
-    "runtime-main.js.map": "/static/js/runtime-main.cbdd1686.js.map",
-    "static/js/2.44b2c145.chunk.js": "/static/js/2.44b2c145.chunk.js",
-    "static/js/2.44b2c145.chunk.js.map": "/static/js/2.44b2c145.chunk.js.map",
-    "static/js/3.4048d0e9.chunk.js": "/static/js/3.4048d0e9.chunk.js",
-    "static/js/3.4048d0e9.chunk.js.map": "/static/js/3.4048d0e9.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.a617e044.chunk.css.map": "/static/css/main.a617e044.chunk.css.map",
-    "static/js/2.44b2c145.chunk.js.LICENSE.txt": "/static/js/2.44b2c145.chunk.js.LICENSE.txt"
+    "main.css": "/guess-the-weather-game/static/css/main.a617e044.chunk.css",
+    "main.js": "/guess-the-weather-game/static/js/main.e963fbbd.chunk.js",
+    "main.js.map": "/guess-the-weather-game/static/js/main.e963fbbd.chunk.js.map",
+    "runtime-main.js": "/guess-the-weather-game/static/js/runtime-main.95ca9179.js",
+    "runtime-main.js.map": "/guess-the-weather-game/static/js/runtime-main.95ca9179.js.map",
+    "static/js/2.44b2c145.chunk.js": "/guess-the-weather-game/static/js/2.44b2c145.chunk.js",
+    "static/js/2.44b2c145.chunk.js.map": "/guess-the-weather-game/static/js/2.44b2c145.chunk.js.map",
+    "static/js/3.4048d0e9.chunk.js": "/guess-the-weather-game/static/js/3.4048d0e9.chunk.js",
+    "static/js/3.4048d0e9.chunk.js.map": "/guess-the-weather-game/static/js/3.4048d0e9.chunk.js.map",
+    "index.html": "/guess-the-weather-game/index.html",
+    "static/css/main.a617e044.chunk.css.map": "/guess-the-weather-game/static/css/main.a617e044.chunk.css.map",
+    "static/js/2.44b2c145.chunk.js.LICENSE.txt": "/guess-the-weather-game/static/js/2.44b2c145.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.cbdd1686.js",
+    "static/js/runtime-main.95ca9179.js",
     "static/js/2.44b2c145.chunk.js",
     "static/css/main.a617e044.chunk.css",
     "static/js/main.e963fbbd.chunk.js"
