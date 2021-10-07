@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ProgressBar from "./components/progressBar";
+import ResultsTable from "./components/resultsTable.js";
 
 const arrCities = ["Managua", "London", "Amsterdam", "Paris", "Berlin"];
 
@@ -15,6 +17,12 @@ const App = () => {
   const [temperature, setTemperature] = useState(0);
   const [currentCity, setCurrentCity] = useState(0);
   const [arrResponses, setArrResponses] = useState([]);
+
+  const resetStateProperties = () => {
+    setTemperature(0);
+    setArrResponses([]);
+    setCurrentCity(0);
+  };
 
   const handleInputChange = (e) => {
     setTemperature(e.target.value);
@@ -43,53 +51,43 @@ const App = () => {
       setTemperature(0);
       setCurrentCity(currentCity + 1);
     } else {
-      setTemperature(0);
-      setArrResponses([]);
-      setCurrentCity(0);
+      resetStateProperties();
     }
   };
 
   return (
-    <div className='App'>
-      {currentCity === 5 && (
-        <>
-          <div>
-            {arrResponses.filter((item) => item.isCorrect).lenght > 2 ? (
-              <h1>You've won, Congrats!</h1>
-            ) : (
-              <h1>You lose!</h1>
-            )}
-          </div>
-          <div>
-            <ul>
-              {arrResponses.map(
-                ({ city, userResponse, cityTemperature }, index) => {
-                  return (
-                    <li key={index}>
-                      {city} | Temperature: {cityTemperature}°C |  Your Response: {userResponse}°C
-                    </li>
-                  );
-                }
-              )}
-            </ul>
-          </div>
-        </>
-      )}
-      {currentCity !== 5 && (
-        <>
-          <h3>Current City: {arrCities[currentCity]}</h3>
-          <input
-            value={temperature}
-            onChange={handleInputChange}
-            type='text'
-            placeholder=' Guess the Temperature'
-          />
-        </>
-      )}
-
-      <button onClick={handleSubmit}>
-        {currentCity !== 5 ? "Submit" : "Play Again"}
-      </button>
+    <div className='App container'>
+      <div className='row'>
+        {currentCity === 5 && (
+            <div className="row text-center">
+            <h1 className="display-2 text-info">
+              {arrResponses.filter((item) => item.isCorrect).lenght > 2 ? "You've won, Congrats!" : "You lose!"}</h1>
+            </div>
+        )}
+        {currentCity !== 5 && (
+          <>
+            <h3>Current City: {arrCities[currentCity]}</h3>
+            <input
+              value={temperature}
+              onChange={handleInputChange}
+              type='text'
+              placeholder='Guess the Temperature'
+            />
+          </>
+        )}
+        <div className='row my-3'>
+          <ProgressBar currentCity={currentCity} />
+        </div>
+        <button
+          className='btn btn-dark my-4 btn-lg'
+          onClick={handleSubmit}
+        >
+          {currentCity !== 5 ? "Submit" : "Play Again"}
+        </button>
+      </div>
+      <div className="row">
+        <ResultsTable arrResponses={arrResponses} />
+      </div>
     </div>
   );
 };
