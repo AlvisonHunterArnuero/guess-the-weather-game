@@ -1,27 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Jumbotron from "./components/JumboTron";
-import ProgressBar from "./components/progressBar";
-import ResultsTable from "./components/resultsTable.js";
+import ProgressBar from "./components/ProgressBar/index";
+import ResultsTable from "./components/ResultsTable/index.js";
 import Spinner from "./components/Spinner";
-import './App.css';
+import USerGuessInput from "./components/UserGuessInput";
+import "./App.css";
 import {
   SetUserTemperature,
   SetCurrentCity,
   UpdateUserResponses,
-  FetchWeatherData
+  FetchWeatherData,
 } from "./redux/weather/actions";
 
 const arrCities = ["Managua", "London", "Amsterdam", "Paris", "Berlin"];
-
-// const fetchWeatherData = (city) => {
-//   return fetch(
-//     "https://api.openweathermap.org/data/2.5/weather?q=" +
-//       city +
-//       "&units=metric&appid=" +
-//       process.env.REACT_APP_API_KEY
-//   );
-// };
 
 const App = () => {
   const temperature = useSelector((state) => state.guessWeather.temperature);
@@ -32,7 +24,7 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-  const resetStateProperties = () => {
+  const resetStoreStateProperties = () => {
     dispatch(SetUserTemperature(0));
     dispatch(UpdateUserResponses([]));
     dispatch(SetCurrentCity(0));
@@ -43,7 +35,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    if(JSON.stringify(cityWeather)==='{}') return;
+    if (JSON.stringify(cityWeather) === "{}") return;
     const { main } = cityWeather;
     const { temp } = main;
     const arrTemp = [
@@ -61,6 +53,7 @@ const App = () => {
     dispatch(UpdateUserResponses(arrTemp));
     dispatch(SetUserTemperature(0));
     dispatch(SetCurrentCity(currentCity + 1));
+    // eslint-disable-next-line
   }, [cityWeather]);
 
   const handleSubmit = async (e) => {
@@ -69,7 +62,7 @@ const App = () => {
     if (currentCity < 5) {
       dispatch(FetchWeatherData(arrCities[currentCity]));
     } else {
-      resetStateProperties();
+      resetStoreStateProperties();
     }
   };
 
@@ -79,44 +72,36 @@ const App = () => {
         <Jumbotron currentCity={currentCity} arrResponses={arrResponses} />
         {currentCity !== 5 && (
           <>
-          {isLoading ? <Spinner /> : (<h5 className='text-secondary lead my-2'>
-              Current City: {arrCities[currentCity]}
-            </h5>)}
-            <div className='input-group mb-3'>
-              <input
-                value={temperature}
-                onChange={handleInputChange}
-                type='text'
-                placeholder={arrCities[currentCity]}
-                className='form-control'
-                aria-label={arrCities[currentCity]}
-                aria-describedby='button-addon2'
-              />
-              <button
-                className='btn btn-outline-secondary'
-                type='button'
-                id='button-addon2'
-                onClick={handleSubmit}
-              >
-                {currentCity !== 5 ? "Submit" : "Play Again"}
-              </button>
-            </div>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <h5 className='text-secondary lead my-2'>
+                <span className='fw-bold text-uppercase text-dark'>Current City:</span> {arrCities[currentCity] || "All cities have been displayed"}
+              </h5>
+            )}
+            <USerGuessInput
+              temperature={temperature}
+              fillerText={"Type in your best guess"}
+              currentCity={currentCity}
+              handleInputChange={handleInputChange}
+              handleSubmit={handleSubmit}
+            />
           </>
         )}
       </div>
-      <div className='row my-3'>
+      <div className='row my-2'>
         <ProgressBar currentCity={currentCity} />
       </div>
       <div className='row'>
         <ResultsTable arrResponses={arrResponses} />
       </div>
-      <div className='row my-3'>
-        {currentCity === 5 && (
+      <div className='row my-3 justify-content-center'>
+        {currentCity >= 5 && (
           <button
             className='btn btn-outline-success text-uppercase'
             type='button'
             id='button-addon2'
-            onClick={resetStateProperties}
+            onClick={resetStoreStateProperties}
           >
             Play Again
           </button>
