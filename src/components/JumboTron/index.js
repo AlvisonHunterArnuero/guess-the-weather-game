@@ -1,18 +1,18 @@
 import React from "react";
 
 const Jumbotron = (props) => {
-  let selected_expression = "";
+  let selected_expression = "pet/welcome.png";
   let failedGuesses = props.arrResponses.filter(
     (elem) => elem.isCorrect === false
   ).length;
 
-  if (props.currentCity === 5 && failedGuesses < 2) {
+  if (props.currentCity === 5 && failedGuesses <= 2) {
     selected_expression = "pet/happy.png";
   } else {
     // validate the amount of correct guesses the user gets
     switch (failedGuesses) {
       case 1: {
-        selected_expression = "pet/sad.png";
+        selected_expression = "pet/surprised.png";
         break;
       }
       case 2: {
@@ -20,16 +20,11 @@ const Jumbotron = (props) => {
         break;
       }
       case 3: {
-        selected_expression = "pet/surprised.png";
+        selected_expression = "pet/sad.png";
         break;
       }
       case 4: {
         selected_expression = "pet/cry.png";
-        break;
-      }
-
-      default: {
-        selected_expression = "pet/welcome.png";
         break;
       }
     }
