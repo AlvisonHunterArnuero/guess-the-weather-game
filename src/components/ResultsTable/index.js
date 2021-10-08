@@ -1,3 +1,4 @@
+import Emoji from "../EmojiBox";
 const ResultsTable = ({arrResponses}) => {
   return (
 <div>
@@ -12,7 +13,8 @@ const ResultsTable = ({arrResponses}) => {
           <div className='ms-2 me-auto text-muted'>
             <div className='fw-bold text-dark'>{city}</div>
             <span
-              className={isCorrect
+              className={
+                isCorrect
                   ? "text-primary small ms-3"
                   : "text-danger small ms-3 text-decoration-line-through"
               }
@@ -20,7 +22,13 @@ const ResultsTable = ({arrResponses}) => {
               Your Guess: {userResponse}°C
             </span>
           </div>
-          <span className='badge bg-dark p-3 w-25'>{cityTemperature} °C</span>
+          <span className='fs-5 badge text-black p-3 w-25'>
+            <Emoji
+              customClassRules='fs-5'
+              symbol={cityTemperature >= 27 ? "🥵" : "🥶"}
+            />{"  "}
+            {cityTemperature} °C
+          </span>
         </li>
       );
     }

@@ -31,8 +31,7 @@ const UserGuessInput = (props) => {
         id='button-addon2'
         onClick={props.handleSubmit}
       >
-        {" "}
-        Submit
+        SUBMIT
       </button>
     </div>
   );
