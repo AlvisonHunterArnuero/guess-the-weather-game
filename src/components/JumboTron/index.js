@@ -27,6 +27,10 @@ const Jumbotron = (props) => {
         selected_expression = "pet/cry.png";
         break;
       }
+      default: {
+        selected_expression = failedGuesses > 2 ? "pet/cry.png" : "pet/welcome.png";
+        break;
+      }
     }
   }
 
@@ -36,7 +40,7 @@ const Jumbotron = (props) => {
         <div className='col-md-4'>
           <img
             src={selected_expression}
-            className='img-fluid rounded-start w-50 my-2'
+            className='img-fluid rounded-start my-2'
             alt={props.currentCity}
           />
         </div>
@@ -53,11 +57,11 @@ const Jumbotron = (props) => {
               ready for this quest, champion?
             </p>
             {props.currentCity === 5 && (
-              <div className='row text-center'>
+              <div className='row text-start text-uppercase'>
                 {failedGuesses < 3 ? (
-                  <h1 className='text-success'>"You've won, Congrats!"</h1>
+                  <h1 className='text-success'>You've won, Congrats!</h1>
                 ) : (
-                  <h1 className='text-danger'>"Oh, no: You lose, pal!"</h1>
+                  <h1 className='text-danger'>You just lose, pal!</h1>
                 )}
               </div>
             )}

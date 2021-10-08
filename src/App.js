@@ -1,19 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getRandomCities } from "./Utils";
+import "./App.css";
 import Jumbotron from "./components/JumboTron";
 import ProgressBar from "./components/ProgressBar/index";
 import ResultsTable from "./components/ResultsTable/index.js";
 import Spinner from "./components/Spinner";
 import USerGuessInput from "./components/UserGuessInput";
-import "./App.css";
 import {
   SetUserTemperature,
   SetCurrentCity,
   UpdateUserResponses,
   FetchWeatherData,
 } from "./redux/weather/actions";
-
-const arrCities = ["Managua", "London", "Amsterdam", "Paris", "Berlin"];
+  // Get all five random cities
+  let arrCities = getRandomCities();
 
 const App = () => {
   const temperature = useSelector((state) => state.guessWeather.temperature);
@@ -28,6 +29,8 @@ const App = () => {
     dispatch(SetUserTemperature(0));
     dispatch(UpdateUserResponses([]));
     dispatch(SetCurrentCity(0));
+    arrCities = [];
+    arrCities = getRandomCities();
   };
 
   const handleInputChange = (e) => {
@@ -58,7 +61,6 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (currentCity < 5) {
       dispatch(FetchWeatherData(arrCities[currentCity]));
     } else {
@@ -75,9 +77,12 @@ const App = () => {
             {isLoading ? (
               <Spinner />
             ) : (
-              <h5 className='text-secondary lead my-2'>
-                <span className='fw-bold text-uppercase text-dark'>Current City:</span> {arrCities[currentCity] || "All cities have been displayed"}
-              </h5>
+              <div className='row my-2 text-uppercase justify-content-start h4'>
+                <div className='col-auto text-dark'>Current City:</div>
+                <div className='col-auto text-secondary'>
+                  {arrCities[currentCity] || "All cities have been displayed"}
+                </div>
+              </div>
             )}
             <USerGuessInput
               temperature={temperature}
@@ -98,7 +103,7 @@ const App = () => {
       <div className='row my-3 justify-content-center'>
         {currentCity >= 5 && (
           <button
-            className='btn btn-outline-success text-uppercase'
+            className='btn btn-success text-uppercase'
             type='button'
             id='button-addon2'
             onClick={resetStoreStateProperties}
