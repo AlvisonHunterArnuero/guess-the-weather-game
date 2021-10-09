@@ -1,9 +1,19 @@
 import React from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
 const UserGuessInput = (props) => {
   const strcustomTitle = "Type in only numbers, please."
+  const notify = () =>
+    toast.error(strcustomTitle, {
+      style: {
+        border: "1px dotted black",
+        background: "#ffb7b7",
+        color: "#990044",
+      },
+    });
   return (
     <div className='input-group mb-3'>
+      <Toaster gutter={8} />
       <input
         type='text'
         data-bs-toggle='tooltip'
@@ -21,6 +31,7 @@ const UserGuessInput = (props) => {
         onFocus={(e) => (e.target.value = "")}
         onKeyPress={(event) => {
           if (!/[0-9.]/.test(event.key)) {
+            notify();
             event.preventDefault();
           }
         }}
