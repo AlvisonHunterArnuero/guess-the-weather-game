@@ -12,21 +12,11 @@ export const getFlagsData = () => {
 
 export const getRandomCities = () => {
   const arrRndCities = [
-    "Managua",
-    "Brasília",
-    "Algiers",
-    "London",
-    "Montevideo",
-    "Taiwan",
-    "Dubai",
-    "Luanda",
-    "Buenos Aires",
-    "Sydney",
-    "Linz",
-    "Waterloo",
     "Vienna",
     "Porto Calvo",
     "Tirana",
+    "Houston",
+    "Philadelphia",
     "Nassau",
     "Dhaka",
     "Yerevan",
@@ -43,10 +33,14 @@ export const getRandomCities = () => {
     "Bangkok",
     "Tunis",
     "Ankara",
+    "New York",
+    "Boston",
     "Kampala",
     "Kiev",
     "Abu Dhabi",
     "Accra",
+    "San Diego",
+    "Dallas",
     "Kuala Lumpur",
     "Monaco",
     "Ulan Bator",
@@ -56,21 +50,44 @@ export const getRandomCities = () => {
     "Beijing",
     "Kathmandu",
     "Amsterdam",
+    "Los Angeles",
+    "Austin",
     "Islamabad",
     "Ramallah",
     "Lima",
-    "Manila"
+    "Manila",
+    "Prague",
+    "Lisbon",
+    "Istanbul",
+    "Managua",
+    "Brasília",
+    "Algiers",
+    "London",
+    "Montevideo",
+    "Taiwan",
+    "Dubai",
+    "Luanda",
+    "Buenos Aires",
+    "Sydney",
+    "Linz",
+    "Waterloo",
+    "Rome",
+    "Florence",
+    "Bodrum",
+    "Trieste",
+    "Porto",
+    "Seville",
+    "Trieste",
+    "Porto",
+    "Seattle",
+    "Chicago",
   ];
-
-  let arrFilteredCities = [];
-  let rndNumber = 0;
-  let i = 1;
-  while (i <= 5) {
-    rndNumber = Math.floor(Math.random() * (46 - 0 + 1)) + 0;
-    arrFilteredCities.push(arrRndCities[rndNumber]);
-    i += 1;
+  const setCities = new Set();
+  while (setCities.size <= 4) {
+    let rndNumber = Math.floor(Math.random() * (66 - 0 + 1)) + 0;
+    setCities.add(arrRndCities[rndNumber]);
   }
-
+  let arrFilteredCities = Array.from(setCities);
   return arrFilteredCities;
 };
 

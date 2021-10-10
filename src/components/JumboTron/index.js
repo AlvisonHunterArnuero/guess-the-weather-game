@@ -34,6 +34,15 @@ const Jumbotron = (props) => {
     }
   }
 
+  // .game-title {
+  //   font-family: 'Bebas Neue', cursive;
+  // }
+  
+  // .game-description {
+  //   font-family: 'Roboto Slab', serif;
+  // }
+  
+  // .game-status {
   return (
     <div className='card bg-dark text-white mb-3 my-4'>
       <div className='row g-0'>
@@ -46,11 +55,11 @@ const Jumbotron = (props) => {
         </div>
         <div className='col-md-8'>
           <div className='card-body'>
-            <h5 className='card-title display-6 text-warning text-uppercase text-start'>
+            <h5 className='card-title text-start game-title'>
               Guess The Weather Game
             </h5>
-            <p className='card-text fs-5 col-11 my-4 text-start'>
-              Hello pals, I am the weather Jiraffe. In this game, 5 cities will be displayed in the screen one by one.
+            <p className='card-text game-description col-11 text-start'>
+              Hello pals, I am the weather Giraffe. In this game, 5 cities will be displayed in the screen one by one.
               your mission, if you decide to take it, will be to guess the
               current weather in each of these cities you're are being presented with. If you assert in at least
               3 of them, with a deviation of 5 grades maxs, you shall certainly win, otherwise you lose. Are you
@@ -59,9 +68,9 @@ const Jumbotron = (props) => {
             {props.currentCity === 5 && (
               <div className='row text-start text-uppercase'>
                 {failedGuesses < 3 ? (
-                  <h1 className='text-success'>You've won, Congrats!</h1>
+                  <h1 className='text-success display-4'>You've won, Congrats!</h1>
                 ) : (
-                  <h1 className='text-danger'>You just lose, pal!</h1>
+                  <h1 className='text-danger display-4'>You just lose, pal!</h1>
                 )}
               </div>
             )}
